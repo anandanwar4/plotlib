@@ -398,7 +398,6 @@ class TwoDimensionalDataVisualisation:
         self.generateMultipleScatterPlots(listOfDicts);
         self.generateMultipleOverlappedScatterPlots(listOfDicts);
         
-        
         return;
 
 
