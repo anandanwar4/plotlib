@@ -325,7 +325,6 @@ class TwoDimensionalDataVisualisation:
 
     def __initializePlotTitleAndLabels(self, axes, plotLabel, xLabel, yLabel):
         """Initializes axes with the provided labels.
-        
 
         Args:
             axes (Axes): Axes object\n
@@ -397,10 +396,12 @@ class TwoDimensionalDataVisualisation:
         
         self.generateMultipleScatterPlots(listOfDicts);
         self.generateMultipleOverlappedScatterPlots(listOfDicts);
-        
+        pyplot.show();
         return;
 
 
 matplotlib.use('qt5agg'); # Not recommended
+# matplotlib.use('TkAgg');
+# pyplot.interactive(False);
 twoDimensionalDataVisualisation = TwoDimensionalDataVisualisation();
 twoDimensionalDataVisualisation.generateSamplePlot();
