@@ -1,7 +1,7 @@
 import numpy as np;
 
 class BasicMatrixUtil:
-    def getCombinedMatrixFromVectors(self, vector1, vector2, *args: list, rowwise = True) -> np.ndarray:
+    def get_combined_matrix_from_vectors(self, vector1, vector2, *args: list, rowwise = True) -> np.ndarray:
         """Combines given vectors into a matrix.
 
         User for combining multiple vectors into a single matrix. \
@@ -16,18 +16,18 @@ class BasicMatrixUtil:
             if set to true and column-wise otherwise.
         """
 
-        listOfVectors = list();
-        listOfVectors.append(vector1);
-        listOfVectors.append(vector2);
+        list_of_vectors = list();
+        list_of_vectors.append(vector1);
+        list_of_vectors.append(vector2);
         for vector in args:
-            listOfVectors.append(vector);
-        arr = np.array(listOfVectors);
+            list_of_vectors.append(vector);
+        arr = np.array(list_of_vectors);
         if (not rowwise):
             return arr.T;
         return arr;
 
 
-    def getIdentityMatrix(self, rows: int, type: object) -> np.ndarray:
+    def get_identity_matrix(self, rows: int, type: object) -> np.ndarray:
         """Returns Identity matrix.
 
         Used to get identity matrix of the specified dimensions(rows) \
@@ -45,7 +45,7 @@ class BasicMatrixUtil:
         return np.identity(rows, dType);
 
 
-    def getDeterminantOfMatrix(self, array: np.ndarray) -> float:
+    def get_determinant_of_matrix(self, array: np.ndarray) -> float:
         """Returns determinant of matrix.
 
         Args:
@@ -55,7 +55,7 @@ class BasicMatrixUtil:
         return np.linalg.det(array);
 
 
-    def getInverseOfMatrix(self, array: np.ndarray) -> np.ndarray:
+    def get_inverse_of_matrix(self, array: np.ndarray) -> np.ndarray:
         """Return inverse of given array.
 
         Args:
@@ -65,31 +65,31 @@ class BasicMatrixUtil:
         return np.linalg.pinv(array);
 
 
-def testGetCombinedMatrixFromVectorsWithTwoVectors():
+def test_get_combined_matrix_from_vectors_with_two_vectors():
     obj = BasicMatrixUtil();
     list1 = [1, 2, 3, 4];
     list2 = [2, 2, 3, 5];
-    arr = obj.getCombinedMatrixFromVectors(list1, list2, rowwise=True);
+    arr = obj.get_combined_matrix_from_vectors(list1, list2, rowwise=True);
     print(arr);
 
-def testGetIdentityMatrix():
+def test_get_identity_matrix():
     rows = 3;
     obj = BasicMatrixUtil();
-    print(obj.getIdentityMatrix(rows, int));
-    print(obj.getIdentityMatrix(rows, float));
+    print(obj.get_identity_matrix(rows, int));
+    print(obj.get_identity_matrix(rows, float));
 
-def testGetDeterminantOfMatrix():
+def test_get_determinant_of_matrix():
     arr = np.array([(1., 2.), (2., 3.)]);
     obj = BasicMatrixUtil();
-    print(obj.getDeterminantOfMatrix(arr));
+    print(obj.get_determinant_of_matrix(arr));
 
-def testGetInverseOfMatrix():
+def test_get_inverse_of_matrix():
     arr = np.array([(1., 2.), (4., 3.)]);
     obj = BasicMatrixUtil();
-    print(obj.getInverseOfMatrix(arr));
+    print(obj.get_inverse_of_matrix(arr));
 
 
-testGetCombinedMatrixFromVectorsWithTwoVectors();
-testGetIdentityMatrix();
-testGetDeterminantOfMatrix();
-testGetInverseOfMatrix();
+test_get_combined_matrix_from_vectors_with_two_vectors();
+test_get_identity_matrix();
+test_get_determinant_of_matrix();
+test_get_inverse_of_matrix();

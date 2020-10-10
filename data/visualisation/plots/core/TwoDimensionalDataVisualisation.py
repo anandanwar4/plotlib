@@ -5,8 +5,8 @@ import math as math;
 
 class TwoDimensionalDataVisualisation:
 
-    def generateSimpleLinePlot(self, plotLabel, xLabel, yLabel, firstAxisData, 
-                               secondAxisData, format = ''):
+    def generate_simple_line_plot(self, plot_label, x_label, y_label, first_axis_data,
+                                  second_axis_data, format =''):
         """Plots line graph in a 2D plane.
         
         Used for 2D plots only. The function internally sets plotLabel, xLabel, \
@@ -14,11 +14,11 @@ class TwoDimensionalDataVisualisation:
         secondAxisData. It uses a single axes object given by pyplot.subplots().
 
         Args:
-            plotLabel (String): Title of the plot.\n
-            xLabel (String): The label of the x axis in the plot.\n
-            yLabel (String): The label of the y axis in the plot.\n
-            firstAxisData (Array): The x axis data in the plot.\n
-            secondAxisData (Array): The y axis data in the plot.\n
+            plot_label (String): Title of the plot.\n
+            x_label (String): The label of the x axis in the plot.\n
+            y_label (String): The label of the y axis in the plot.\n
+            first_axis_data (Array): The x axis data in the plot.\n
+            second_axis_data (Array): The y axis data in the plot.\n
             format (String) [Optional]: The format the plot to be used. It is \
             empty by default. The format of teh string should be:\
             "[marker][line][color]". For exploring the allowed values \
@@ -27,12 +27,12 @@ class TwoDimensionalDataVisualisation:
         """
         
         figure, axes = pyplot.subplots();
-        self.__initializePlotTitleAndLabels(axes, plotLabel, xLabel, yLabel);
-        self.__plotDataInLinePlot(axes, firstAxisData, secondAxisData, fmt = format);
+        self.__initialize_plot_title_and_labels(axes, plot_label, x_label, y_label);
+        self.__plot_data_in_line_plot(axes, first_axis_data, second_axis_data, fmt = format);
         return;
 
 
-    def generateMultipleLinePlots(self, listOfDicts):
+    def generate_multiple_line_plots(self, list_of_dicts):
         """Plots the list of data as line graph in separate plots.
         
         Used for 2D plots only. The function internally uses \
@@ -41,19 +41,14 @@ class TwoDimensionalDataVisualisation:
         given. 
 
         Args:
-            listIfDictionaries (List of dictionaries): This should contain a list\ 
+            list_of_dicts (List of dictionaries): This should contain a list\
             of dictionaries with the following format:\n
                 [{'plotLabel':<STRING_lABEL_OF_PLOT>, 'xLabel':<STRING_AS_X_LABEL>, \
                 'yLabel':<STRING_AS_Y_LABEL>, 'firstAxisData':<DATA_array_FOR_X_AXIS>, \
-                'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>, 'format':<STRING>}] \n
-            format (String) [Optional]: The format the plot to be used. It is \
-            empty by default. The format of the string should be:\
-            "[marker][line][color]". For exploring the allowed values \
-            for all the three please look into the matplotlib official \
-            documentation. 
+                'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>, 'format':<STRING>}]
         """
         
-        size = len(listOfDicts);
+        size = len(list_of_dicts);
         figure, axes = None, None;
         
         if (size <= 4):
@@ -61,45 +56,40 @@ class TwoDimensionalDataVisualisation:
         else:
             figure, axes = pyplot.subplots((math.floor(size / 4) + 1), 4);
         
-        for index, dict in enumerate(listOfDicts):
-            self.__initializePlotTitleAndLabels(axes[index], dict['plotLabel'], 
-                                                dict['xLabel'], dict['yLabel']);
-            self.__plotDataInLinePlot(axes[index], dict['firstAxisData'], 
-                                    dict['secondAxisData'], dict['format']);
+        for index, dict in enumerate(list_of_dicts):
+            self.__initialize_plot_title_and_labels(axes[index], dict['plotLabel'],
+                                                    dict['xLabel'], dict['yLabel']);
+            self.__plot_data_in_line_plot(axes[index], dict['firstAxisData'],
+                                          dict['secondAxisData'], dict['format']);
         return;
 
 
-    def generateMultipleOverlappedLinePlots(self, listOfDicts):
+    def generate_multiple_overlapped_line_plots(self, list_of_dicts):
         """Plots the list of data as line graph in same plot.
         
         Used for 2D plots only. The function internally uses \
         pyplot.subplots(), to generate a plot.
 
         Args:
-            listIfDictionaries (List of dictionaries): This should contain a list\ 
+            list_of_dicts (List of dictionaries): This should contain a list\
             of dictionaries with the following format:\n
                 [{'plotLabel':<STRING_lABEL>, 'firstAxisData':<DATA_array_FOR_X_AXIS>, \
                 'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>, 'format':<STRING>}] \n
-            format (String) [Optional]: The format the plot to be used. It is \
-            empty by default. The format of the string should be:\
-            "[marker][line][color]". For exploring the allowed values \
-            for all the three please look into the matplotlib official \
-            documentation. \n
             Note: The firstAxisData should be of same datatype. Otherwise the \
             plotted graph can be ambiguous.\n
         """
         
         figure, axes = pyplot.subplots();
-        for index, dict in enumerate(listOfDicts):
-            self.__plotDataInLinePlot(axes, dict['firstAxisData'], 
-                                    dict['secondAxisData'], dict['format'], 
-                                    dict['plotLabel']);
+        for index, dict in enumerate(list_of_dicts):
+            self.__plot_data_in_line_plot(axes, dict['firstAxisData'],
+                                          dict['secondAxisData'], dict['format'],
+                                          dict['plotLabel']);
             axes.legend();
         return;
 
 
-    def generateSimpleBarPlot(self, plotLabel, xLabel, yLabel, firstAxisData, 
-                               secondAxisData):
+    def generate_simple_bar_plot(self, plot_label, x_label, y_label, first_axis_data,
+                                 second_axis_data):
         """Plots bar graph in a 2D plane.
         
         Used for 2D plots only. The function internally sets plotLabel, xLabel, \
@@ -107,20 +97,20 @@ class TwoDimensionalDataVisualisation:
         secondAxisData. It uses a single axes object given by pyplot.subplots().
 
         Args:
-            plotLabel (String): Title of the plot.\n
-            xLabel (String): The label of the x axis in the plot.\n
-            yLabel (String): The label of the y axis in the plot.\n
-            firstAxisData (Array): The x axis data in the plot.\n
-            secondAxisData (Array): The y axis data in the plot.
+            plot_label (String): Title of the plot.\n
+            x_label (String): The label of the x axis in the plot.\n
+            y_label (String): The label of the y axis in the plot.\n
+            first_axis_data (Array): The x axis data in the plot.\n
+            second_axis_data (Array): The y axis data in the plot.
         """
         
         figure, axes = pyplot.subplots();
-        self.__initializePlotTitleAndLabels(axes, plotLabel, xLabel, yLabel);
-        self.__plotDataInBarPlot(axes, firstAxisData, secondAxisData);
+        self.__initialize_plot_title_and_labels(axes, plot_label, x_label, y_label);
+        self.__plot_data_in_bar_plot(axes, first_axis_data, second_axis_data);
         return;
 
 
-    def generateMultipleBarPlots(self, listOfDicts):
+    def generate_multiple_bar_plots(self, list_of_dicts):
         """Plots the list of data as bar graph in separate plots.
         
         Used for 2D plots only. The function internally uses \
@@ -129,14 +119,14 @@ class TwoDimensionalDataVisualisation:
         given. 
 
         Args:
-            listIfDictionaries (List of dictionaries): This should contain a list\ 
+            list_of_dicts (List of dictionaries): This should contain a list\
             of dictionaries with the following format:\n
                 [{'plotLabel':<STRING_lABEL_OF_PLOT>, 'xLabel':<STRING_AS_X_LABEL>, \
                 'yLabel':<STRING_AS_Y_LABEL>, 'firstAxisData':<DATA_array_FOR_X_AXIS>, \
                 'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>, 'format':<STRING>}]
         """
         
-        size = len(listOfDicts);
+        size = len(list_of_dicts);
         figure, axes = None, None;
         
         if (size <= 4):
@@ -144,22 +134,22 @@ class TwoDimensionalDataVisualisation:
         else:
             figure, axes = pyplot.subplots((math.floor(size / 4) + 1), 4);
         
-        for index, dict in enumerate(listOfDicts):
-            self.__initializePlotTitleAndLabels(axes[index], dict['plotLabel'], 
-                                                dict['xLabel'], dict['yLabel']);
-            self.__plotDataInBarPlot(axes[index], dict['firstAxisData'], 
-                                    dict['secondAxisData']);
+        for index, dict in enumerate(list_of_dicts):
+            self.__initialize_plot_title_and_labels(axes[index], dict['plotLabel'],
+                                                    dict['xLabel'], dict['yLabel']);
+            self.__plot_data_in_bar_plot(axes[index], dict['firstAxisData'],
+                                         dict['secondAxisData']);
         return;
 
 
-    def generateMultipleOverlappedBarPlots(self, listOfDicts):
+    def generate_multiple_overlapped_bar_plots(self, list_of_dicts):
         """Plots the list of data as bar graph in the same plot.
         
         Used for 2D plots only. The function internally uses \
         pyplot.subplots(), to generate a plot.
 
         Args:
-            listIfDictionaries (List of dictionaries): This should contain a list\ 
+            list_of_dicts (List of dictionaries): This should contain a list\
             of dictionaries with the following format:\n
                 [{'plotLabel':<STRING_lABEL>, 'firstAxisData':<DATA_array_FOR_X_AXIS>, \
                 'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>}] \n
@@ -168,15 +158,15 @@ class TwoDimensionalDataVisualisation:
         """
         
         figure, axes = pyplot.subplots();
-        for index, dict in enumerate(listOfDicts):
-            self.__plotDataInBarPlot(axes, dict['firstAxisData'], 
-                                    dict['secondAxisData'], dict['plotLabel']);
+        for index, dict in enumerate(list_of_dicts):
+            self.__plot_data_in_bar_plot(axes, dict['firstAxisData'],
+                                         dict['secondAxisData'], dict['plotLabel']);
             axes.legend();
         return;
     
     
-    def generateSimpleScatterPlot(self, plotLabel, xLabel, yLabel, firstAxisData, 
-                               secondAxisData, color = 0.5):
+    def generate_simple_scatter_plot(self, plot_label, x_label, y_label, first_axis_data,
+                                     second_axis_data, color = 0.5):
         """Plots scatter graph in a 2D plane.
         
         Used for 2D plots only. The function internally sets plotLabel, xLabel, \
@@ -184,22 +174,22 @@ class TwoDimensionalDataVisualisation:
         secondAxisData. It uses a single axes object given by pyplot.subplots().
 
         Args:
-            plotLabel (String): Title of the plot.\n
-            xLabel (String): The label of the x axis in the plot.\n
-            yLabel (String): The label of the y axis in the plot.\n
-            firstAxisData (Array): The x axis data in the plot.\n
-            secondAxisData (Array): The y axis data in the plot.\n
+            plot_label (String): Title of the plot.\n
+            x_label (String): The label of the x axis in the plot.\n
+            y_label (String): The label of the y axis in the plot.\n
+            first_axis_data (Array): The x axis data in the plot.\n
+            second_axis_data (Array): The y axis data in the plot.\n
             color (Scalar): The color of the marker.
         """
         
         figure, axes = pyplot.subplots();
-        self.__initializePlotTitleAndLabels(axes, plotLabel, xLabel, yLabel);
-        self.__plotDataInScatterPlot(axes, firstAxisData, secondAxisData, 
-                                     color);
+        self.__initialize_plot_title_and_labels(axes, plot_label, x_label, y_label);
+        self.__plot_data_in_scatter_plot(axes, first_axis_data, second_axis_data,
+                                         color);
         return;
 
 
-    def generateMultipleScatterPlots(self, listOfDicts):
+    def generate_multiple_scatter_plots(self, list_of_dicts):
         """Plots the list of data as scatter graph in separate plots.
         
         Used for 2D plots only. The function internally uses \
@@ -208,14 +198,14 @@ class TwoDimensionalDataVisualisation:
         given. 
 
         Args:
-            listIfDictionaries (List of dictionaries): This should contain a list\ 
+            list_of_dicts (List of dictionaries): This should contain a list\
             of dictionaries with the following format:\n
                 [{'plotLabel':<STRING_lABEL_OF_PLOT>, 'xLabel':<STRING_AS_X_LABEL>, \
                 'yLabel':<STRING_AS_Y_LABEL>, 'firstAxisData':<DATA_array_FOR_X_AXIS>, \
                 'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>, 'color':<COLOR>}]
         """
         
-        size = len(listOfDicts);
+        size = len(list_of_dicts);
         figure, axes = None, None;
         
         if (size <= 4):
@@ -223,22 +213,22 @@ class TwoDimensionalDataVisualisation:
         else:
             figure, axes = pyplot.subplots((math.floor(size / 4) + 1), 4);
         
-        for index, dict in enumerate(listOfDicts):
-            self.__initializePlotTitleAndLabels(axes[index], dict['plotLabel'], 
-                                                dict['xLabel'], dict['yLabel']);
-            self.__plotDataInScatterPlot(axes[index], dict['firstAxisData'], 
-                                    dict['secondAxisData'], dict['color']);
+        for index, dict in enumerate(list_of_dicts):
+            self.__initialize_plot_title_and_labels(axes[index], dict['plotLabel'],
+                                                    dict['xLabel'], dict['yLabel']);
+            self.__plot_data_in_scatter_plot(axes[index], dict['firstAxisData'],
+                                             dict['secondAxisData'], dict['color']);
         return;
 
 
-    def generateMultipleOverlappedScatterPlots(self, listOfDicts):
+    def generate_multiple_overlapped_scatter_plots(self, list_of_dicts):
         """Plots the list of data as scatter graph in the same plot.
         
         Used for 2D plots only. The function internally uses \
         pyplot.subplots(), to generate a plot.
 
         Args:
-            listIfDictionaries (List of dictionaries): This should contain a list\ 
+            list_of_dicts (List of dictionaries): This should contain a list\
             of dictionaries with the following format:\n
                 [{'plotLabel':<STRING_lABEL>, 'firstAxisData':<DATA_array_FOR_X_AXIS>, \
                 'secondAxisData':<DATA_ARRAY_FOR_Y_AXIS>, 'color':<COLOR>}] \n
@@ -247,15 +237,15 @@ class TwoDimensionalDataVisualisation:
         """
         
         figure, axes = pyplot.subplots();
-        for index, dict in enumerate(listOfDicts):
-            self.__plotDataInScatterPlot(axes, dict['firstAxisData'], 
-                                    dict['secondAxisData'], dict['color'], 
-                                    label = dict['plotLabel']);
+        for index, dict in enumerate(list_of_dicts):
+            self.__plot_data_in_scatter_plot(axes, dict['firstAxisData'],
+                                             dict['secondAxisData'], dict['color'],
+                                             label = dict['plotLabel']);
             axes.legend();
         return;
 
 
-    def __plotDataInLinePlot(self, axes, firstAxisData, secondAxisData, fmt, label = ''):
+    def __plot_data_in_line_plot(self, axes, first_axis_data, second_axis_data, fmt, label =''):
         """Plots line graph using firstAxisData and secondAxisData. 
         
         Used for 2D plots only. The x label, y label, plot title, etc should \
@@ -263,8 +253,8 @@ class TwoDimensionalDataVisualisation:
 
         Args:
             axes (Axes): Axes object\n
-            firstAxisData (Array): Array of objects for the x axis of the plot\n
-            secodnAxisData (Array): Array of objects for the y axis of the plot\n
+            first_axis_data (Array): Array of objects for the x axis of the plot\n
+            second_axis_data (Array): Array of objects for the y axis of the plot\n
             fmt (String) [Optional]: The format the plot to be used. It is \
             empty by default. The format of the string should be:\
             "[marker][line][color]". For exploring the allowed values \
@@ -276,11 +266,11 @@ class TwoDimensionalDataVisualisation:
             lines (List(Line2D)): A list of Line2D representing plot of data
         """
         
-        lines = axes.plot(firstAxisData, secondAxisData, fmt, label = label);
+        lines = axes.plot(first_axis_data, second_axis_data, fmt, label = label);
         return lines;
         
 
-    def __plotDataInBarPlot(self, axes, firstAxisData, secondAxisData, label = ''):
+    def __plot_data_in_bar_plot(self, axes, first_axis_data, second_axis_data, label =''):
         """Plots bar graph using firstAxisData and secondAxisData. 
         
         Used for 2D plots only. The x label, y label, plot title, etc should \
@@ -288,20 +278,20 @@ class TwoDimensionalDataVisualisation:
 
         Args:
             axes (Axes): Axes object\n
-            firstAxisData (Array): Array of objects for the x axis of the plot\n
-            secodnAxisData (Array): Array of objects for the y axis of the plot\n
+            first_axis_data (Array): Array of objects for the x axis of the plot\n
+            second_axis_data (Array): Array of objects for the y axis of the plot\n
             label (String): label of the plot.\n
             
         Returns:
             lines (List(Line2D)): A list of Line2D representing plot of data
         """
         
-        lines = axes.bar(firstAxisData, secondAxisData, label = label);
+        lines = axes.bar(first_axis_data, second_axis_data, label = label);
         return lines;
     
     
-    def __plotDataInScatterPlot(self, axes, firstAxisData, secondAxisData, 
-                                color, label = ''):
+    def __plot_data_in_scatter_plot(self, axes, first_axis_data, second_axis_data,
+                                    color, label = ''):
         """Plots scatter graph using firstAxisData and secondAxisData. 
         
         Used for 2D plots only. The x label, y label, plot title, etc should \
@@ -309,8 +299,8 @@ class TwoDimensionalDataVisualisation:
 
         Args:
             axes (Axes): Axes object\n
-            firstAxisData (Array): Array of objects for the x axis of the plot\n
-            secodnAxisData (Array): Array of objects for the y axis of the plot\n
+            first_axis_data (Array): Array of objects for the x axis of the plot\n
+            second_axis_data (Array): Array of objects for the y axis of the plot\n
             color (Number): Number for color for representing data\n
             label (String): label of the plot.\n
             
@@ -318,37 +308,37 @@ class TwoDimensionalDataVisualisation:
             lines (List(Line2D)): A list of Line2D representing plot of data
         """
         
-        lines = axes.scatter(firstAxisData, secondAxisData, color, 
+        lines = axes.scatter(first_axis_data, second_axis_data, color,
                              label = label);
         return lines;
 
 
-    def __initializePlotTitleAndLabels(self, axes, plotLabel, xLabel, yLabel):
+    def __initialize_plot_title_and_labels(self, axes, plot_label, x_label, y_label):
         """Initializes axes with the provided labels.
 
         Args:
             axes (Axes): Axes object\n
-            plotLabel (String): Title of the plot.\n
-            xLabel (String): The label of the x axis in the plot.\n
-            yLabel (String): The label of the y axis in the plot.
+            plot_label (String): Title of the plot.\n
+            x_label (String): The label of the x axis in the plot.\n
+            y_label (String): The label of the y axis in the plot.
 
         """
         
-        axes.set_title(plotLabel);
-        axes.set_xlabel(xLabel);
-        axes.set_ylabel(yLabel);
+        axes.set_title(plot_label);
+        axes.set_xlabel(x_label);
+        axes.set_ylabel(y_label);
         return;
 
 
-    def generateSamplePlot(self):
+    def generate_sample_plot(self):
         """Generates a sample plot.
         
         Uses title as samplePlot, x axis label as xLabel, y axis label as \
         yLabel, and data as xAxis = [1,2,3,4], yAxis = [1,3,5,3].
         """
         
-        self.generateSimpleLinePlot("samplePlot", "x Axis", "y Axis", 
-                                   ['a', 'b', 'c', 'd'], [1,3,5,8]);
+        self.generate_simple_line_plot("samplePlot", "x Axis", "y Axis",
+                                       ['a', 'b', 'c', 'd'], [1,3,5,8]);
         
         listOfDicts =  [{'plotLabel':"plot 1", 'xLabel':"xLabel 1", 
                 'yLabel':"yLabel 1", 'firstAxisData':[1,2,3,4], 
@@ -360,12 +350,12 @@ class TwoDimensionalDataVisualisation:
                 'yLabel':"yLabel 2", 'firstAxisData':[1,3,5,8], 
                 'secondAxisData':[1,5,10,1], 'format':'b^'}];
         
-        self.generateMultipleLinePlots(listOfDicts);
-        self.generateMultipleOverlappedLinePlots(listOfDicts);
+        self.generate_multiple_line_plots(listOfDicts);
+        self.generate_multiple_overlapped_line_plots(listOfDicts);
         
         
-        self.generateSimpleBarPlot("samplePlot", "x Axis", "y Axis", 
-                                   ['a', 'b', 'c', 'd'], [1,3,5,8]);
+        self.generate_simple_bar_plot("samplePlot", "x Axis", "y Axis",
+                                      ['a', 'b', 'c', 'd'], [1,3,5,8]);
         
         listOfDicts =  [{'plotLabel':"plot 1", 'xLabel':"xLabel 1", 
                 'yLabel':"yLabel 1", 'firstAxisData':[1,2,3,4], 
@@ -377,12 +367,12 @@ class TwoDimensionalDataVisualisation:
                 'yLabel':"yLabel 2", 'firstAxisData':[1,3,5,8], 
                 'secondAxisData':[1,5,10,1]}];
         
-        self.generateMultipleBarPlots(listOfDicts);
-        self.generateMultipleOverlappedBarPlots(listOfDicts);
+        self.generate_multiple_bar_plots(listOfDicts);
+        self.generate_multiple_overlapped_bar_plots(listOfDicts);
         
         
-        self.generateSimpleScatterPlot("samplePlot", "x Axis", "y Axis", 
-                                   ['a', 'b', 'c', 'd'], [1,3,5,8], 0.5);
+        self.generate_simple_scatter_plot("samplePlot", "x Axis", "y Axis",
+                                          ['a', 'b', 'c', 'd'], [1,3,5,8], 0.5);
         
         listOfDicts =  [{'plotLabel':"plot 1", 'xLabel':"xLabel 1", 
                 'yLabel':"yLabel 1", 'firstAxisData':[1,2,3,4], 
@@ -394,8 +384,8 @@ class TwoDimensionalDataVisualisation:
                 'yLabel':"yLabel 2", 'firstAxisData':[1,3,5,8], 
                 'secondAxisData':[1,5,10,1], 'color':0.75, 'size':10**2}];
         
-        self.generateMultipleScatterPlots(listOfDicts);
-        self.generateMultipleOverlappedScatterPlots(listOfDicts);
+        self.generate_multiple_scatter_plots(listOfDicts);
+        self.generate_multiple_overlapped_scatter_plots(listOfDicts);
         pyplot.show();
         return;
 
@@ -403,5 +393,5 @@ class TwoDimensionalDataVisualisation:
 matplotlib.use('qt5agg'); # Not recommended
 # matplotlib.use('TkAgg');
 # pyplot.interactive(False);
-twoDimensionalDataVisualisation = TwoDimensionalDataVisualisation();
-twoDimensionalDataVisualisation.generateSamplePlot();
+two_dimensional_data_visualisation = TwoDimensionalDataVisualisation();
+two_dimensional_data_visualisation.generate_sample_plot();
