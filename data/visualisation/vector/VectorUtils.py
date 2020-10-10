@@ -1,7 +1,7 @@
-import numpy as np
 import math
 
-class VecctorUtils:
+
+class VectorUtils:
     def get_magnitude(self, vector: list) -> float:
         """Returns the magnitude of the vector.
 
@@ -119,26 +119,26 @@ class VecctorUtils:
 
 
 def test_get_magnitude():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list = [3, 4];
     magnitude = vector_utils.get_magnitude(list);
     assert(magnitude == 5);
 
 def test_get_unit_vector():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list = [3, 4];
     unit_vector = vector_utils.get_unit_vector(list);
     print(unit_vector);
 
 def test_scalar_multiply():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list = [3, 4];
     enhanced_vector = vector_utils.scalar_multiply(2, list);
     assert(enhanced_vector.__getitem__(0) == 6);
     assert (enhanced_vector.__getitem__(1) == 8);
 
 def test_add_vectors():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list1 = [3, 4];
     list2 = [4, 5];
     added_vector = vector_utils.add_vectors(list1, list2);
@@ -146,7 +146,7 @@ def test_add_vectors():
     assert (added_vector.__getitem__(1) == 9);
 
 def test_subtract_vectors():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list1 = [3, 4];
     list2 = [4, 5];
     subtracted_vector = vector_utils.subtract_vectors(list1, list2);
@@ -154,14 +154,14 @@ def test_subtract_vectors():
     assert (subtracted_vector.__getitem__(1) == -1);
 
 def test_dot_product():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list1 = [3, 4];
     list2 = [4, 5];
     dot_prod = vector_utils.dot_product(list1, list2);
     assert(dot_prod == 32);
 
 def test_get_projection():
-    vector_utils = VecctorUtils();
+    vector_utils = VectorUtils();
     list1 = [3, 4];
     list2 = [4, 5];
     projection_vector = vector_utils.get_projection(list1, list2);
